@@ -129,7 +129,8 @@ display(baseDF.select("price"))
 # TODO: Replace <FILL_IN> with appropriate code
 
 fixedPriceDF = (baseDF
-                .<FILL_IN>
+                .withColumnRenamed("price", "price_raw")
+                .withColumn("price", convert_price_udf("price_raw"))
                )
 
 # COMMAND ----------
@@ -160,7 +161,7 @@ print("Tests passed.")
 # COMMAND ----------
 
 # TODO: Get rid of price_raw column
-fixedPriceDF = fixedPriceDF.<FILL_IN>
+fixedPriceDF = fixedPriceDF.drop("price_raw")
 
 # COMMAND ----------
 
